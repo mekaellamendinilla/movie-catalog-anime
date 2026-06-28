@@ -25,7 +25,7 @@ export default function HeroSection() {
       </div>
 
       <div className="pointer-events-none absolute inset-0">
-        <div className="h-[220px] md:h-[300px] lg:h-[400px]"></div>
+        <div className="h-55 md:h-75 lg:h-100"></div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 function AboutPage() {
@@ -26,7 +26,7 @@ function AboutPage() {
             <img
               src="/images/about-page-logo/catalog-logo.png"
               alt="RLZone"
-              className="rounded-2xl w-full h-[400px] object-cover"
+              className="rounded-2xl w-full h-100 object-cover"
             />
           </div>
 
