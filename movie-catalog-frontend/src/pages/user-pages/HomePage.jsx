@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import NavBar from "../components/NavBar";
-import HeroSection from "../components/HeroSection";
-import SearchBar from "../components/SearchBar";
-import CategoryFilter from "../components/CategoryFilter";
-import movies from "../data/movies";
-import MovieCard from "../components/MovieCard";
-import Footer from "../components/Footer";
+import UserNavbar from "../../components/layout/UserNavbar";
+import HeroSection from "../../components/movies/HeroSection";
+import SearchBar from "../../components/movies/SearchBar";
+import CategoryFilter from "../../components/movies/CategoryFilter";
+import movies from "../../data/movies";
+import MovieCard from "../../components/movies/MovieCard";
+import Footer from "../../components/layout/Footer";
 
 export default function HomePage() {
   const [search, setSearch] = useState("");
@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#27452f]">
-      <NavBar />
+      <UserNavbar />
 
       <main className="max-w-7xl mx-auto px-6 py-10">
 

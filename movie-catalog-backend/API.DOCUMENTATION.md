@@ -225,9 +225,8 @@ Table Name: **movies**
 | id          | INT (Primary Key, Auto Increment) |
 | title       | VARCHAR(255)                      |
 | category    | VARCHAR(100)                      |
-| year        | INT                               |
 | duration    | VARCHAR(50)                       |
-| studio      | VARCHAR(100)                      |
+| year        | INT                               |
 | image       | VARCHAR(255)                      |
 | description | TEXT                              |
 | created_at  | TIMESTAMP                         |
@@ -249,7 +248,6 @@ movie-catalog-backend
 │   ├── routes
 │   │   └── movieRoutes.js
 │   │
-│   └── models
 │
 ├── .env
 ├── package.json
@@ -273,7 +271,7 @@ The following operations were successfully tested:
 
 ---
 
-# Author
+# Author - Mekaella Mendinilla
 
 Movie Catalog REST API
 
