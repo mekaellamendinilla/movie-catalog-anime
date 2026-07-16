@@ -1,22 +1,115 @@
+require("dotenv").config();
+
 const express = require("express");
+const cors = require("cors");
+
+const db = require("./src/config/db");
+
+const movieRoutes = require("./src/routes/movieRoutes");
+const categoryRoutes = require("./src/routes/categoryRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const favoriteRoutes = require("./src/routes/favoriteRoutes");
+const watchlistRoutes = require("./src/routes/watchlistRoutes");
+
+const dashboardRoutes = require("./src/routes/dashboardRoutes");
+const userRoutes = require("./src/routes/userRoutes");
+const adminRoutes=require("./src/routes/adminRoutes");
+
+// UPLOADAN NG IMAGES
+const path = require("path");
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Database Connection Test
+db.connect((err) => {
+  if (err) {
+    console.log("Database connection failed");
+    console.log(err);
+  } else {
+    console.log("Database connected successfully");
+  }
+});
+
+// Routes
+app.use("/api/movies", movieRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/favorites", favoriteRoutes);
+app.use("/api/watchlist", watchlistRoutes);
+
+app.use("/api/admin/dashboard", dashboardRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/admin",adminRoutes);
+
+// UPLOADAN NG IMAGES
+app.use(
+    "/uploads",
+    express.static(
+        path.join(__dirname,"uploads")
+    )
+);
+
+// Default Route
+app.get("/", (req, res) => {
+  res.json({
+    message: "Movie Catalog API Running"
+  });
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-const movieRoutes = require("./src/routes/movieRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/movies", movieRoutes);
+app.use("/api/auth", authRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-
+*/
 
 
 

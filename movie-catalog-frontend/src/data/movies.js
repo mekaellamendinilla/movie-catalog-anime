@@ -1,3 +1,5 @@
+// STATIC DATA (TEMPORARY)
+
 const movies = [
   {
     id: 1,

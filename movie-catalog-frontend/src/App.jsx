@@ -17,10 +17,12 @@ import UserProfile from "./pages/user-pages/UserProfile";
 
 
 // ADMIN PAGES
+import AdminLayout from "./components/layout/AdminLayout";
 import CategoryPage from "./pages/admin-pages/CategoryPage";
 import AdminDashboardPage from "./pages/admin-pages/AdminDashboardPage";
 import MoviesPage from "./pages/admin-pages/MoviesPage";
 import UsersPage from "./pages/admin-pages/UsersPage";
+import AdminProfile from "./pages/admin-pages/AdminProfile";
 
 export default function App() {
   return (
@@ -32,15 +34,18 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
 
         <Route path="/home" element={<HomePage />} />
-        <Route path="/movie-details" element={<MovieDetailsPage />} />
+        <Route path="/movie-details/:id" element={<MovieDetailsPage />} />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/watchlist" element={<WatchlistPage />} />
         <Route path="/profile" element={<UserProfile />} />
 
-        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
-        <Route path="/admin-users" element={<UsersPage />} />
-        <Route path="/admin-movies" element={<MoviesPage />} />
-        <Route path="/admin-categories" element={<CategoryPage />} /> 
+        <Route path="/admin" element={< AdminLayout/>}>
+          <Route path="dashboard" element={<AdminDashboardPage />} />
+          <Route path="users" element={<UsersPage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="category" element={<CategoryPage />} /> 
+          <Route path="profile" element={<AdminProfile/>} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
