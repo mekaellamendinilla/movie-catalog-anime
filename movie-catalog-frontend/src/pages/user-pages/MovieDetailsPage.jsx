@@ -56,7 +56,7 @@ function MovieDetailsPage() {
     ? movie.image
     : movie.image?.startsWith("/")
       ? movie.image
-      : `http://localhost:5000/uploads/posters/${movie.image}`;
+      : `${import.meta.env.VITE_API_URL}/uploads/posters/${movie.image}`;
 
   return (
     <div className="min-h-screen bg-[#264d2d] px-6 py-8">

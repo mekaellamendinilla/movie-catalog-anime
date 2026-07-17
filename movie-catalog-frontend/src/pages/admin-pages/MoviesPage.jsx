@@ -232,7 +232,7 @@ export default function MoviesPage() {
                     <td className="py-4 px-4">
                       {movie.image ? (
                         <img 
-                          src={`http://localhost:5000/uploads/posters/${movie.image}`} 
+                          src={`${import.meta.env.VITE_API_URL}/uploads/posters/${movie.image}`} 
                           alt={movie.title} 
                           className="h-12 w-9 rounded-md object-cover shadow-sm border border-[#e7debb]/10" 
                         />
@@ -428,7 +428,7 @@ export default function MoviesPage() {
               <div className="flex gap-4 items-start">
                 {selectedMovie?.image ? (
                   <img 
-                    src={`http://localhost:5000/uploads/posters/${selectedMovie.image}`} 
+                    src={`${import.meta.env.VITE_API_URL}/uploads/posters/${selectedMovie.image}`} 
                     alt={selectedMovie.title} 
                     className="h-20 w-14 rounded-lg object-cover shadow-md border border-[#e7debb]/10" 
                   />

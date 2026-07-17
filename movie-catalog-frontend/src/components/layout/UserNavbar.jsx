@@ -52,7 +52,7 @@ export default function UserNavbar() {
   const displayName = user?.username || user?.first_name || "User";
   const profileImage = user?.profile_image;
   const profileImageUrl = profileImage
-    ? `http://localhost:5000/uploads/profiles/${profileImage}`
+    ? `${import.meta.env.VITE_API_URL}/uploads/profiles/${profileImage}`
     : null;
 
   return (

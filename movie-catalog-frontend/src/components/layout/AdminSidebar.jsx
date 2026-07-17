@@ -28,7 +28,7 @@ export default function AdminSidebar() {
         setAdminData({
           username: data.username || "Admin User",
           profile_image: data.profile_image 
-            ? `http://localhost:5000/uploads/profiles/${data.profile_image}` 
+            ? `${import.meta.env.VITE_API_URL}/uploads/profiles/${data.profile_image}` 
             : ""
         });
       }

@@ -29,7 +29,7 @@ export default function AdminProfile() {
         username: data.username || "",
         email: data.email || "",
       });
-      setPreviewImage(data.profile_image ? `http://localhost:5000/uploads/profiles/${data.profile_image}` : "");
+      setPreviewImage(data.profile_image ? `${import.meta.env.VITE_API_URL}/uploads/profiles/${data.profile_image}` : "");
     } catch (err) {
       if (err.response?.status === 401) {
         localStorage.removeItem("token");
