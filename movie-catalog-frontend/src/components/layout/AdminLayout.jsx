@@ -1,3 +1,6 @@
+// ADMIN LAYOUT PARA HINDI NA HUMABA ANG CODE AT MADALING BASHIN. REUSABLE COMPONENTS
+
+
 import AdminSidebar from "../../components/layout/AdminSidebar";
 import AdminHeader from "../../components/layout/AdminHeader";
 import { Outlet } from "react-router-dom";

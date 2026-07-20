@@ -9,7 +9,6 @@ const roleMiddleware = require("../middleware/roleMiddleware");
 // UPLOADAN NG IMAGES
 const upload = require("../middleware/upload");
 
-// Public
 router.get("/", movieController.getMovies);
 
 router.get("/search", movieController.searchMovies);
@@ -53,28 +52,3 @@ router.delete(
 );
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*const express = require("express");
-const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.json({
-    message: "GET all movies endpoint working!"
-  });
-});
-
-
-module.exports = router; */

@@ -17,9 +17,7 @@ const storage = multer.diskStorage({
             null,
             Date.now() + ext
         );
-
     }
-
 });
 
 const fileFilter = (req,file,cb)=>{
@@ -33,9 +31,7 @@ const fileFilter = (req,file,cb)=>{
     else{
 
         cb(new Error("Only image files are allowed."),false);
-
     }
-
 }
 
 module.exports = multer({

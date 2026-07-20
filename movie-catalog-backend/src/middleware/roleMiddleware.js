@@ -1,5 +1,6 @@
 module.exports = (role) => {
 
+    console.log("dadawdd")
     return (req, res, next) => {
 
         if (req.user.role !== role) {

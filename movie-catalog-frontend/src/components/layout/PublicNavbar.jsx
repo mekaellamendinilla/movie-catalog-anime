@@ -22,7 +22,7 @@ const PublicNavbar = () => {
     }`;
 
   return (
-    <header className="bg-[#274330] text-[#F4EBD0] shadow-md">
+    <header className="sticky top-0 z-50 bg-[#274330] text-[#F4EBD0] shadow-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <div className="space-y-1">
           <h1 className="text-2xl font-bold sm:text-3xl">RLZone</h1>
@@ -37,20 +37,20 @@ const PublicNavbar = () => {
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#3d593e] bg-[#2f5038]/90 text-[#E8DFC3] transition-colors duration-200 hover:bg-[#356041] focus:outline-none focus:ring-2 focus:ring-[#E8DFC3] md:hidden"
         >
           <span className="sr-only">Menu</span>
-          <div className="flex h-5 w-5 flex-col items-center justify-between">
+          <div className="relative flex h-5 w-5 items-center justify-center">
             <span
-              className={`block h-0.5 w-full rounded-full bg-current transition-transform duration-300 ${
-                isOpen ? "translate-y-1.5 rotate-45" : ""
+              className={`absolute block h-0.5 w-full rounded-full bg-current transition-all duration-300 ${
+                isOpen ? "rotate-45" : "-translate-y-1.5"
               }`}
             />
             <span
-              className={`block h-0.5 w-full rounded-full bg-current transition-opacity duration-300 ${
+              className={`absolute block h-0.5 w-full rounded-full bg-current transition-opacity duration-300 ${
                 isOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`block h-0.5 w-full rounded-full bg-current transition-transform duration-300 ${
-                isOpen ? "-translate-y-1.5 -rotate-45" : ""
+              className={`absolute block h-0.5 w-full rounded-full bg-current transition-all duration-300 ${
+                isOpen ? "-rotate-45" : "translate-y-1.5"
               }`}
             />
           </div>

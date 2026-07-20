@@ -1,4 +1,4 @@
-// STATIC DATA (TEMPORARY)
+// STATIC DATA (TEMPORARY) HARDCODED 
 
 const movies = [
   {

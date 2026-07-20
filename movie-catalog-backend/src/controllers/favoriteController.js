@@ -36,7 +36,6 @@ exports.addFavorite = (req, res) => {
   const userId = req.user.id;
   const { movie_id } = req.body;
 
-  // Check kung favorite na
   const checkSql =
     "SELECT * FROM favorites WHERE user_id = ? AND movie_id = ?";
 

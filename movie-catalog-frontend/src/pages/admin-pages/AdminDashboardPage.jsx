@@ -76,8 +76,9 @@ export default function AdminDashboardPage() {
         </div>
 
         <div className="bg-[#36573e] border border-[#e7debb]/10 rounded-3xl p-8 flex flex-col justify-center shadow-md select-none">
-          <div className="grid grid-cols-2 gap-4 divide-x divide-[#e7debb]/10">
-            <div className="flex items-center gap-4 pl-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-[#e7debb]/10">
+            
+            <div className="flex items-center gap-4 pb-4 md:pb-0 md:pl-2">
               <div className="w-14 h-14 rounded-xl bg-[#e7debb]/10 border border-[#e7debb]/20 flex items-center justify-center text-[#e7debb] shrink-0">
                 <Heart size={26} className="fill-current" />
               </div>
@@ -87,7 +88,7 @@ export default function AdminDashboardPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 px-6 md:px-8">
+            <div className="flex items-center gap-4 pt-4 md:pt-0 md:px-8">
               <div className="w-14 h-14 rounded-xl bg-[#e7debb]/10 border border-[#e7debb]/20 flex items-center justify-center text-[#e7debb] shrink-0">
                 <Bookmark size={26} className="fill-current" />
               </div>
@@ -96,6 +97,7 @@ export default function AdminDashboardPage() {
                 <p className="text-3xl font-bold font-montserrat mt-0.5">{loading ? "..." : stats.totalWatchlist}</p>
               </div>
             </div>
+
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 const db = require("../config/db");
 
-// GET ALL CATEGORIES
 exports.getCategories = (req, res) => {
   const sql = "SELECT * FROM categories";
 
@@ -16,7 +15,6 @@ exports.getCategories = (req, res) => {
   });
 };
 
-// GET CATEGORY BY ID
 exports.getCategoryById = (req, res) => {
   const { id } = req.params;
 
@@ -37,7 +35,6 @@ exports.getCategoryById = (req, res) => {
   });
 };
 
-// CREATE CATEGORY (POST)
 exports.createCategory = (req, res) => {
   const { name, description } = req.body;
 
@@ -56,9 +53,6 @@ exports.createCategory = (req, res) => {
   });
 };
 
-
-
-// UPDATE CATEGORY (PUT)
 exports.updateCategory = (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
@@ -77,7 +71,6 @@ exports.updateCategory = (req, res) => {
   });
 };
 
-// DELETE CATEGORY
 exports.deleteCategory = (req, res) => {
   const { id } = req.params;
 

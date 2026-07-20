@@ -1,14 +1,10 @@
 const db = require("../config/db");
 
-// ===============================
-// GET ALL USERS
-// ===============================
-
 exports.getUsers = (req, res) => {
-
     const sql = `
     SELECT
         users.id,
+        users.role_id,
         first_name,
         last_name,
         username,
@@ -22,25 +18,16 @@ exports.getUsers = (req, res) => {
     `;
 
     db.query(sql, (err, result) => {
-
-        if (err)
-            return res.status(500).json(err);
-
+        if (err) return res.status(500).json(err);
         res.json(result);
-
     });
-
 };
 
-// ===============================
-// GET USER BY ID
-// ===============================
-
 exports.getUserById = (req, res) => {
-
     const sql = `
     SELECT
         users.id,
+        users.role_id,
         first_name,
         last_name,
         username,
@@ -54,121 +41,52 @@ exports.getUserById = (req, res) => {
     `;
 
     db.query(sql, [req.params.id], (err, result) => {
-
-        if (err)
-            return res.status(500).json(err);
-
+        if (err) return res.status(500).json(err);
         if (result.length === 0) {
-            return res.status(404).json({
-                message: "User not found."
-            });
+            return res.status(404).json({ message: "User not found." });
         }
-
         res.json(result[0]);
-
     });
-
 };
-
-// ===============================
-// UPDATE USER
-// ===============================
 
 exports.updateUser = (req, res) => {
-
-    const {
-        first_name,
-        last_name,
-        username,
-        email,
-        role_id
-    } = req.body;
+    const { first_name, last_name, username, email, role_id } = req.body;
 
     const sql = `
-    UPDATE users
-    SET
-        first_name = ?,
-        last_name = ?,
-        username = ?,
-        email = ?
-        role_id = COALESCE(?, role_id)
-    WHERE id = ?
+        UPDATE users 
+        SET 
+            first_name = ?, 
+            last_name = ?, 
+            username = ?, 
+            email = ?,
+            role_id = COALESCE(?, role_id)
+        WHERE id = ?
     `;
 
-    db.query(
-        sql,
-        [
-            first_name,
-            last_name,
-            username,
-            email,
-            role_id,
-            req.params.id
-        ],
-        (err) => {
+    const values = [
+        first_name, 
+        last_name, 
+        username, 
+        email, 
+        role_id || null, 
+        req.params.id
+    ];
 
-            if (err)
-                return res.status(500).json(err);
-
-            res.json({
-                message: "User and role updated successfully."
-            });
-
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Database Update Error:", err);
+            return res.status(500).json(err);
         }
-    );
 
+        return res.json({
+            message: "User updated successfully."
+        });
+    });
 };
-
-// ===============================
-// UPDATE ROLE
-// ===============================
-
-exports.updateUserRole = (req, res) => {
-
-    const { role_id } = req.body;
-
-    const sql = `
-    UPDATE users
-    SET role_id = ?
-    WHERE id = ?
-    `;
-
-    db.query(
-        sql,
-        [role_id, req.params.id],
-        (err) => {
-
-            if (err)
-                return res.status(500).json(err);
-
-            res.json({
-                message: "User role updated successfully."
-            });
-
-        }
-    );
-
-};
-
-// ===============================
-// DELETE USER
-// ===============================
 
 exports.deleteUser = (req, res) => {
-
-    db.query(
-        "DELETE FROM users WHERE id = ?",
-        [req.params.id],
-        (err) => {
-
-            if (err)
-                return res.status(500).json(err);
-
-            res.json({
-                message: "User deleted successfully."
-            });
-
-        }
-    );
-
+    db.query("DELETE FROM users WHERE id = ?", [req.params.id], (err) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: "User deleted successfully." });
+    });
 };

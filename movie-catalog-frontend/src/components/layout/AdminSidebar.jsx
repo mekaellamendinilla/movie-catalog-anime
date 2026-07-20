@@ -14,7 +14,6 @@ import { getCurrentUserProfile } from "../../services/userService";
 export default function AdminSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   
-  // 🔄 Dito natin ise-save ang live admin credentials
   const [adminData, setAdminData] = useState({
     username: "Admin User",
     profile_image: ""
@@ -41,8 +40,8 @@ export default function AdminSidebar() {
   useEffect(() => {
     fetchAdminInfo();
 
-    // ⚡ Trick: Makikinig tayo sa custom events o window focus para mag-update agad 
-    // kapag pinindot ang "Save Changes" sa kabilang component nang walang reload
+    // trick: Makikinig tayo sa custom events o window focus para mag-update agad 
+    // kapag pinindot ang "Save Changes" sa kabilang component ng walang reload
     window.addEventListener("profileUpdated", fetchAdminInfo);
     window.addEventListener("focus", fetchAdminInfo);
     
@@ -71,27 +70,34 @@ export default function AdminSidebar() {
   );
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-[#27452f] border-r border-[#e7debb]/10 px-6 py-8 text-[#e7debb]">
-      {/* Brand Logo Section */}
-      <div className="mb-10">
-        <h1 className="text-3xl font-bold font-serif tracking-tight leading-none mb-1">
-          RLZone
-        </h1>
-        <p className="text-[11px] uppercase tracking-[0.15em] text-[#e7debb]/60 font-montserrat font-medium">
-          Anime / Ghibli Collection
-        </p>
+    <div className="flex flex-col h-full bg-[#27452f] border-r border-[#e7debb]/10 px-6 py-8 text-[#e7debb] relative">
+      
+      <div className="mb-10 flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold font-serif tracking-tight leading-none mb-1">
+            RLZone
+          </h1>
+          <p className="text-[11px] uppercase tracking-[0.15em] text-[#e7debb]/60 font-montserrat font-medium">
+            Anime / Ghibli Collection
+          </p>
+        </div>
+
+        {/* Lalabas lang itong Close o "X" Button sa Mobile View kapag bukas ang drawer */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="md:hidden p-1.5 hover:bg-[#36573e] rounded-lg text-[#e7debb]/80 hover:text-[#e7debb] transition-colors shrink-0 -mt-1 -mr-2"
+        >
+          <X size={22} />
+        </button>
       </div>
 
-      {/* Sidebar Menus at Categories */}
       <div className="flex-1 space-y-7 overflow-y-auto pr-1">
-        {/* Main Dashboard */}
         <div className="space-y-1">
           <SidebarLink to="/admin/dashboard" icon={LayoutDashboard}>
             Dashboard
           </SidebarLink>
         </div>
 
-        {/* Movie Management Section */}
         <div className="space-y-2">
           <h4 className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#e7debb]/40 font-montserrat px-4">
             Movie Management
@@ -106,7 +112,6 @@ export default function AdminSidebar() {
           </div>
         </div>
 
-        {/* User Management Section */}
         <div className="space-y-2">
           <h4 className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#e7debb]/40 font-montserrat px-4">
             User Management
@@ -130,7 +135,6 @@ export default function AdminSidebar() {
             }`
           }
         >
-          {/* 📸 Dinamiko na ang Avatar Icon Circle ngayon! */}
           <div className="w-11 h-11 rounded-full border-2 border-[#e7debb]/30 flex items-center justify-center bg-[#1a3020] text-[#e7debb] shrink-0 group-hover:border-[#e7debb]/60 transition-colors overflow-hidden">
             {adminData.profile_image ? (
               <img 
@@ -143,7 +147,6 @@ export default function AdminSidebar() {
             )}
           </div>
           
-          {/* 🏷️ Dinamiko na ang Username! */}
           <div className="font-montserrat min-w-0 flex-1">
             <h5 className="font-serif font-bold text-base tracking-wide text-[#e7debb] leading-tight truncate">
               {adminData.username}
@@ -159,17 +162,17 @@ export default function AdminSidebar() {
 
   return (
     <>
-      {/* 1. Mobile Hamburger Trigger Button */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2.5 bg-[#213a28] border border-[#e7debb]/20 rounded-xl text-[#e7debb] shadow-lg hover:bg-[#2c4934] transition-colors"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+      {!isOpen && (
+        <div className="md:hidden fixed top-4 left-4 z-50">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="p-2.5 bg-[#213a28] border border-[#e7debb]/20 rounded-xl text-[#e7debb] shadow-lg hover:bg-[#2c4934] transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+        </div>
+      )}
 
-      {/* 2. Mobile Backdrop Overlay */}
       {isOpen && (
         <div
           className="md:hidden fixed inset-0 bg-black/60 z-40 backdrop-blur-sm transition-opacity"
@@ -177,7 +180,6 @@ export default function AdminSidebar() {
         />
       )}
 
-      {/* 3. Mobile Slide-out Drawer */}
       <div
         className={`md:hidden fixed top-0 left-0 h-full w-[280px] z-40 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -186,7 +188,6 @@ export default function AdminSidebar() {
         <SidebarContent />
       </div>
 
-      {/* 4. Desktop Sidebar View */}
       <aside className="hidden md:block w-72 h-screen sticky top-0 shrink-0">
         <SidebarContent />
       </aside>

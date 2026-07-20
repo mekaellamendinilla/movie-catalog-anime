@@ -29,7 +29,7 @@ function UserProfile() {
         username: data.username || "",
         email: data.email || "",
       });
-      setPreviewImage(data.profile_image ? `https://movie-catalog-backend-production.up.railway.app/uploads/profiles/${data.profile_image}` : "");
+      setPreviewImage(data.profile_image ? `${import.meta.env.VITE_API_URL}/uploads/profiles/${data.profile_image}` : "");
     } catch (err) {
       if (err.response?.status === 401) {
         localStorage.removeItem("token");
@@ -63,7 +63,7 @@ function UserProfile() {
       setMessage(response.message || "Profile updated successfully.");
       await loadProfile();
 
-      // 📢 I-dispatch ang event para mag-trigger ng update sa Navbar
+      // i-dispatch ang event para mag-trigger ng update sa Navbar
       window.dispatchEvent(new CustomEvent("profileUpdated"));
 
     } catch (err) {
@@ -102,7 +102,7 @@ function UserProfile() {
       setMessage(response.message || "Profile picture updated successfully.");
       await loadProfile();
 
-      // 📢 I-dispatch din dito para sa bagong upload na picture sa Navbar
+      // i-dispatch din dito para sa bagong upload na picture sa Navbar
       window.dispatchEvent(new CustomEvent("profileUpdated"));
 
     } catch (err) {
@@ -138,8 +138,7 @@ function UserProfile() {
       <div className="bg-[#27452f] border-b py-12 px-6 md:px-16">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left">
-            
-            {/* 📸 USER PROFILE PIC WITH HOVER CAMERA OVERLAY */}
+
             <label className="group relative w-36 h-36 bg-black rounded-full flex items-center justify-center overflow-hidden shadow-lg cursor-pointer border border-[#e7debb]/20">
               {previewImage ? (
                 <img src={previewImage} alt="Profile preview" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
@@ -149,7 +148,6 @@ function UserProfile() {
                 </svg>
               )}
 
-              {/* Hover Dark Overlay at Camera Icon */}
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center gap-1 transition-opacity duration-300">
                 <Camera size={24} className="text-[#e7debb] animate-bounce" />
                 <span className="text-[10px] uppercase font-bold tracking-wider text-[#e7debb]">Upload</span>

@@ -59,7 +59,6 @@ export default function UserNavbar() {
     <header className="sticky top-0 z-50 bg-[#27452f] border-b border-[#e7debb]/10">
       <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
 
-        {/* Logo */}
         <div>
           <h1 className="font-playfair text-4xl font-bold text-[#e7debb]">
             RLZone
@@ -69,9 +68,7 @@ export default function UserNavbar() {
           </p>
         </div>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          {/* Home Link */}
           <NavLink
             to="/home"
             className={({ isActive }) =>
@@ -86,7 +83,6 @@ export default function UserNavbar() {
             <span>Home</span>
           </NavLink>
 
-          {/* Favorites Link */}
           <NavLink
             to="/favorite"
             className={({ isActive }) =>
@@ -101,7 +97,6 @@ export default function UserNavbar() {
             <span>Favorites</span>
           </NavLink>
 
-          {/* Watchlist Link */}
           <NavLink
             to="/watchlist"
             className={({ isActive }) =>
@@ -117,7 +112,6 @@ export default function UserNavbar() {
           </NavLink>
         </div>
 
-        {/* Right Side - User Profile Only */}
         <div className="hidden md:flex items-center gap-3">
           <Link 
             to="/profile" 
@@ -136,7 +130,9 @@ export default function UserNavbar() {
           </Link>
         </div>
 
-        {/* Mobile Hamburger */}
+
+        {/* MOBILE SCREEN NA TO */}
+        {/* MOBILE HAMBURGER */}
         <button
           className="md:hidden text-[#e7debb]"
           onClick={() => setOpen(!open)}
@@ -160,7 +156,6 @@ export default function UserNavbar() {
               Home
             </NavLink>
 
-            {/* Mobile Favorites Link */}
             <NavLink
               to="/favorite"
               onClick={() => setOpen(false)}
@@ -170,7 +165,6 @@ export default function UserNavbar() {
               Favorites
             </NavLink>
 
-            {/* Mobile Watchlist Link */}
             <NavLink
               to="/watchlist"
               onClick={() => setOpen(false)}
@@ -180,7 +174,6 @@ export default function UserNavbar() {
               Watchlist
             </NavLink>
 
-            {/* Mobile User Profile Link */}
             <div className="border-t border-[#e7debb]/10 pt-3">
               <NavLink
                 to="/profile"

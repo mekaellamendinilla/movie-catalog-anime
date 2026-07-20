@@ -65,7 +65,6 @@ exports.register = async (req, res) => {
 
     try {
 
-        // Check existing email
         db.query(
             "SELECT * FROM users WHERE email = ?",
             [email],
@@ -98,7 +97,7 @@ exports.register = async (req, res) => {
                 db.query(
                     sql,
                     [
-                        2, // Default User
+                        2,
                         first_name,
                         last_name,
                         username,
@@ -128,8 +127,6 @@ exports.register = async (req, res) => {
 
 };
 
-
-// LOGIN
 exports.login = (req, res) => {
 
     const { email, password } = req.body;
@@ -209,7 +206,6 @@ exports.login = (req, res) => {
 };
 
 
-// PROFILE
 exports.profile = (req, res) => {
 
     const sql = `
@@ -238,7 +234,6 @@ exports.profile = (req, res) => {
 
 };
 
-//ADMIN DASHBOARD
 
 exports.adminDashboard = (req, res) => {
 

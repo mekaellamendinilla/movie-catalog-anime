@@ -1,6 +1,5 @@
 const db = require("../config/db");
 
-//GET EDNPOINT
 exports.getMovies = (req, res) => {
     const sql = `
         SELECT
@@ -34,7 +33,6 @@ exports.getMovies = (req, res) => {
 
 };
 
-//GET EDNPOINT BY ID
 exports.getMovieById = (req, res) => {
 
     const id = req.params.id;
@@ -75,7 +73,6 @@ exports.getMovieById = (req, res) => {
 
 };
 
-// POST ENDPOINT
 exports.addMovie = (req, res) => {
 
     const {
@@ -122,7 +119,6 @@ exports.addMovie = (req, res) => {
 
 };
 
-// PUT ENDPOINT
 exports.updateMovie = (req, res) => {
 
     const id = req.params.id;
@@ -193,7 +189,6 @@ exports.updateMovie = (req, res) => {
 
 };
 
-// DELETE ENDPOINT
 exports.deleteMovie = (req, res) => {
 
     const id = req.params.id;

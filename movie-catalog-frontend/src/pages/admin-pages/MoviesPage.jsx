@@ -154,7 +154,6 @@ export default function MoviesPage() {
 
   return (
     <div className="text-[#e7debb] font-montserrat relative">
-      {/* 1. Header Title Section */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold font-serif tracking-wide">Movies</h1>
         <p className="text-xs text-[#e7debb]/60 mt-0.5">Manage movies from the database</p>
@@ -163,12 +162,9 @@ export default function MoviesPage() {
       {error ? <p className="mb-4 rounded-lg bg-red-950/40 px-3 py-2 text-sm text-red-100">{error}</p> : null}
       {message ? <p className="mb-4 rounded-lg bg-emerald-950/40 px-3 py-2 text-sm text-emerald-100">{message}</p> : null}
 
-      {/* Main Table Container Card */}
       <div className="bg-[#36573e] rounded-2xl p-6 shadow-md">
         
-        {/* 2. Operations Toolbar */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          {/* Instant Search Box (No search button needed!) */}
           <div className="relative w-full sm:max-w-xs">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-[#27452f]">
               <Search size={18} />
@@ -192,7 +188,6 @@ export default function MoviesPage() {
           </button>
         </div>
 
-        {/* 3. Movies Data Table Management */}
         <div className="overflow-x-auto rounded-xl border border-[#e7debb]/10">
           <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
@@ -228,7 +223,6 @@ export default function MoviesPage() {
                   <tr key={movie.id} className="hover:bg-[#213a28]/20 transition-colors">
                     <td className="py-4 px-4 text-center font-bold text-[#e7debb]/80">{movie.id}</td>
                     
-                    {/* Poster View */}
                     <td className="py-4 px-4">
                       {movie.image ? (
                         <img 
@@ -243,7 +237,6 @@ export default function MoviesPage() {
                       )}
                     </td>
 
-                    {/* Title & Trimmed Description */}
                     <td className="py-4 px-4">
                       <div className="font-bold text-base text-[#e7debb] tracking-wide">{movie.title}</div>
                       <div className="text-[11px] text-[#e7debb]/50 font-normal max-w-xs truncate">
@@ -257,14 +250,12 @@ export default function MoviesPage() {
                     
                     <td className="py-4 px-4">
                       <div className="flex items-center justify-center gap-2">
-                        {/* Edit Button */}
                         <button 
                           onClick={() => handleOpenEdit(movie)} 
                           className="p-1.5 bg-[#e7debb]/10 border border-[#e7debb]/20 rounded-md text-[#e7debb] hover:bg-[#e7debb] hover:text-[#213a28] transition-all"
                         >
                           <SquarePen size={15} />
                         </button>
-                        {/* Delete Button */}
                         <button 
                           onClick={() => handleOpenDelete(movie)} 
                           className="p-1.5 bg-[#e7debb]/10 border border-[#e7debb]/20 rounded-md text-[#e7debb] hover:bg-red-900/40 hover:text-red-300 hover:border-red-400/50 transition-all"
@@ -281,9 +272,6 @@ export default function MoviesPage() {
         </div>
       </div>
 
-      {/* ========================================== */}
-      {/* 🎬 CUSTOM CREATE / EDIT MOVIE MODAL        */}
-      {/* ========================================== */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300">
           <div className="bg-[#36573e] border border-[#e7debb]/20 rounded-2xl w-full max-w-xl p-6 shadow-2xl text-[#e7debb] animate-in fade-in zoom-in-95 duration-150">
@@ -301,7 +289,6 @@ export default function MoviesPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Title field */}
                 <div>
                   <label className="block text-xs font-semibold mb-1 uppercase tracking-wider text-[#e7debb]/70">Movie Title</label>
                   <input
@@ -313,7 +300,6 @@ export default function MoviesPage() {
                   />
                 </div>
 
-                {/* Category selector */}
                 <div>
                   <label className="block text-xs font-semibold mb-1 uppercase tracking-wider text-[#e7debb]/70">Category</label>
                   <select
@@ -329,7 +315,6 @@ export default function MoviesPage() {
                   </select>
                 </div>
 
-                {/* Duration field */}
                 <div>
                   <label className="block text-xs font-semibold mb-1 uppercase tracking-wider text-[#e7debb]/70">Duration</label>
                   <input
@@ -342,7 +327,6 @@ export default function MoviesPage() {
                   />
                 </div>
 
-                {/* Year field */}
                 <div>
                   <label className="block text-xs font-semibold mb-1 uppercase tracking-wider text-[#e7debb]/70">Release Year</label>
                   <input
@@ -356,7 +340,6 @@ export default function MoviesPage() {
                 </div>
               </div>
 
-              {/* Description field */}
               <div>
                 <label className="block text-xs font-semibold mb-1 uppercase tracking-wider text-[#e7debb]/70">Description / Plot</label>
                 <textarea
@@ -367,7 +350,6 @@ export default function MoviesPage() {
                 />
               </div>
 
-              {/* Poster file upload field */}
               <div>
                 <label className="block text-xs font-semibold mb-1 uppercase tracking-wider text-[#e7debb]/70">
                   Poster Image {editingId && <span className="text-[#e7debb]/40 lowercase font-normal">(leave blank to keep current)</span>}
@@ -408,9 +390,6 @@ export default function MoviesPage() {
         </div>
       )}
 
-      {/* ========================================== */}
-      {/* 🗑️ CUSTOM DELETE MOVIE CONFIRMATION MODAL  */}
-      {/* ========================================== */}
       {isDeleteOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300">
           <div className="bg-[#36573e] border border-red-500/20 rounded-2xl w-full max-w-md p-6 shadow-2xl text-[#e7debb] animate-in fade-in zoom-in-95 duration-150">
@@ -439,7 +418,7 @@ export default function MoviesPage() {
                 )}
                 <div>
                   <p className="text-sm text-[#e7debb]/90 leading-relaxed">
-                    Sigurado ka bang gusto mong burahin ang pelikulang <span className="font-bold text-white">"{selectedMovie?.title}"</span>?
+                    Are you sure you want to delete the movie <span className="font-bold text-[#e7debb]">"{selectedMovie?.title}"</span>?
                   </p>
                   <p className="text-xs text-[#e7debb]/60 mt-1">
                     Released: {selectedMovie?.year} | Duration: {selectedMovie?.duration}
@@ -447,7 +426,7 @@ export default function MoviesPage() {
                 </div>
               </div>
               <p className="text-xs text-red-300/80 bg-red-950/30 border border-red-500/10 p-3 rounded-lg leading-relaxed">
-                ⚠️ Ang action na ito ay permanent at hindi na pwedeng bawiin. Mapuputol ang access ng mga users dito sa site.
+                ⚠️ This action is permanent and cannot be undone. The movie will no longer be accessible to users.
               </p>
             </div>
 
@@ -463,7 +442,7 @@ export default function MoviesPage() {
                 type="button"
                 onClick={handleConfirmDelete}
                 disabled={actionLoading}
-                className="flex items-center gap-2 px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50"
+                className="flex items-center gap-2 px-5 py-2 bg-red-700 hover:bg-red-800 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50"
               >
                 {actionLoading ? (
                   <>

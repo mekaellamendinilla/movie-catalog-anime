@@ -7,13 +7,10 @@ const authMiddleware = require("../middleware/authMiddleware");
 const profileUpload = require("../middleware/profileUpload");
 const roleMiddleware = require("../middleware/roleMiddleware");
 
-// Register
 router.post("/register", authController.register);
 
-// Login
 router.post("/login", authController.login);
 
-// User Profile
 router.get(
     "/profile",
     authMiddleware,
@@ -33,7 +30,6 @@ router.post(
     authController.uploadProfilePicture
 );
 
-// Admin Dashboard
 router.get(
     "/admin",
     authMiddleware,

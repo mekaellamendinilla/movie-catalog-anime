@@ -33,7 +33,6 @@ exports.getWatchlist = (req, res) => {
 
 };
 
-
 exports.addWatchlist = (req, res) => {
 
     const userId = req.user.id;
@@ -72,10 +71,6 @@ exports.addWatchlist = (req, res) => {
     });
 
 };
-
-// ======================================
-// REMOVE WATCHLIST
-// ======================================
 
 exports.removeWatchlist = (req, res) => {
 

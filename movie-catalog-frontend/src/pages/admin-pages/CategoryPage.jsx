@@ -16,11 +16,9 @@ export default function CategoryPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Modal Control States
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   
-  // Active Selected Items
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
@@ -48,21 +46,18 @@ export default function CategoryPage() {
     );
   }, [categories, searchTerm]);
 
-  // Buksan ang Modal para sa Create (New Category)
   const handleOpenCreate = () => {
     setEditingId(null);
     setForm(emptyForm);
     setIsFormOpen(true);
   };
 
-  // Buksan ang Modal para sa Edit
   const handleOpenEdit = (category) => {
     setEditingId(category.id);
     setForm({ name: category.name, description: category.description || "" });
     setIsFormOpen(true);
   };
 
-  // Submit Handler para sa Create at Edit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -117,7 +112,6 @@ export default function CategoryPage() {
 
   return (
     <div className="text-[#e7debb] font-montserrat relative">
-      {/* 1. Header Title Section */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold font-serif tracking-wide">Categories</h1>
         <p className="text-xs text-[#e7debb]/60 mt-0.5">Manage categories from the database</p>
@@ -126,12 +120,9 @@ export default function CategoryPage() {
       {error ? <p className="mb-4 rounded-lg bg-red-950/40 px-3 py-2 text-sm text-red-100">{error}</p> : null}
       {message ? <p className="mb-4 rounded-lg bg-emerald-950/40 px-3 py-2 text-sm text-emerald-100">{message}</p> : null}
 
-      {/* Main Table Grid Card */}
       <div className="bg-[#36573e] rounded-2xl p-6 shadow-md">
         
-        {/* 2. Operations Toolbar */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          {/* Search Box Input */}
           <div className="relative w-full sm:max-w-xs">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-[#213a28]">
               <Search size={18} />
@@ -155,7 +146,6 @@ export default function CategoryPage() {
           </button>
         </div>
 
-        {/* 3. Category Data Table Management */}
         <div className="overflow-x-auto rounded-xl border border-[#e7debb]/10">
           <table className="w-full text-left border-collapse min-w-[600px]">
             <thead>
@@ -191,14 +181,13 @@ export default function CategoryPage() {
                     <td className="py-4 px-4 text-[#e7debb]/70 font-normal max-w-xs truncate">{cat.description || "—"}</td>
                     <td className="py-4 px-4">
                       <div className="flex items-center justify-center gap-2">
-                        {/* Edit Button */}
                         <button 
                           onClick={() => handleOpenEdit(cat)} 
                           className="p-1.5 bg-[#e7debb]/10 border border-[#e7debb]/20 rounded-md text-[#e7debb] hover:bg-[#e7debb] hover:text-[#213a28] transition-all"
                         >
                           <SquarePen size={15} />
                         </button>
-                        {/* Delete Button */}
+
                         <button 
                           onClick={() => handleOpenDelete(cat)} 
                           className="p-1.5 bg-[#e7debb]/10 border border-[#e7debb]/20 rounded-md text-[#e7debb] hover:bg-red-900/40 hover:text-red-300 hover:border-red-400/50 transition-all"
@@ -215,9 +204,6 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      {/* ========================================== */}
-      {/* 🛠️ CUSTOM CREATE / EDIT CATEGORY MODAL     */}
-      {/* ========================================== */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300">
           <div className="bg-[#36573e] border border-[#e7debb]/20 rounded-2xl w-full max-w-md p-6 shadow-2xl text-[#e7debb] animate-in fade-in zoom-in-95 duration-150">
@@ -284,9 +270,6 @@ export default function CategoryPage() {
         </div>
       )}
 
-      {/* ========================================== */}
-      {/* 🗑️ CUSTOM DELETE CATEGORY CONFIRMATION MODAL */}
-      {/* ========================================== */}
       {isDeleteOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300">
           <div className="bg-[#36573e] border border-red-500/20 rounded-2xl w-full max-w-md p-6 shadow-2xl text-[#e7debb] animate-in fade-in zoom-in-95 duration-150">
@@ -302,10 +285,10 @@ export default function CategoryPage() {
 
             <div className="space-y-4">
               <p className="text-sm text-[#e7debb]/90 leading-relaxed">
-                Sigurado ka bang gusto mong burahin ang category na <span className="font-bold text-white">"{selectedCategory?.name}"</span>?
+                Are you sure you want to delete the movie <span className="font-bold text-[#e7debb]">"{selectedCategory?.name}"</span>?
               </p>
               <p className="text-xs text-red-300/80 bg-red-950/30 border border-red-500/10 p-3 rounded-lg leading-relaxed">
-                ⚠️ Ang action na ito ay hindi na pwedeng i-undo. Ang mga content na gumagamit sa category na ito ay posibleng maapektuhan.
+                ⚠️ This action is permanent and cannot be undone. The movie will no longer be accessible to users.
               </p>
             </div>
 
@@ -321,7 +304,7 @@ export default function CategoryPage() {
                 type="button"
                 onClick={handleConfirmDelete}
                 disabled={actionLoading}
-                className="flex items-center gap-2 px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50"
+                className="flex items-center gap-2 px-5 py-2 bg-red-700 hover:bg-red-800 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50"
               >
                 {actionLoading ? (
                   <>
