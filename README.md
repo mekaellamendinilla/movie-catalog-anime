@@ -394,18 +394,35 @@ npm install
 
 Create a `.env` file inside the backend folder.
 
-Example:
+### Local Development (XAMPP)
 
 ```env
 PORT=5000
 
 DB_HOST=localhost
+DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=movie_catalog
 
 JWT_SECRET=your_secret_key
 ```
+
+### Production (Railway)
+
+```env
+PORT=5000
+
+DB_HOST=YOUR_RAILWAY_HOST
+DB_PORT=YOUR_RAILWAY_PORT
+DB_USER=YOUR_RAILWAY_USERNAME
+DB_PASSWORD=YOUR_RAILWAY_PASSWORD
+DB_NAME=YOUR_RAILWAY_DATABASE
+
+JWT_SECRET=your_secret_key
+```
+
+For production deployment, the backend is hosted on Railway while the frontend is deployed on Vercel. Environment variables are configured through the Railway Variables panel instead of committing the `.env` file to the repository.
 
 ---
 
@@ -456,6 +473,8 @@ Backend:
 Database:
 
 - Railway MySQL
+
+Environment variables for both the frontend and backend are managed securely through the Vercel and Railway dashboards and are not included in the repository.
 
 ---
 
